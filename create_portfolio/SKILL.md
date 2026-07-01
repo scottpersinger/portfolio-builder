@@ -40,7 +40,10 @@ Default section order (reverse-chronological within each section):
 2. **Experience** — newest first, **each with a company logo**.
 3. **Projects** — newest first, **each with an image** (demo-video thumbnail or
    screenshot) plus real links (GitHub / Devpost / demo); embed demo videos.
-4. **Personal** — location, languages, hobbies, service/volunteering, and
+4. **Education** — degree + school + standing (computed from their grad year, see
+   step 3.5), then the **3 most interesting classes** from their program's real
+   course catalog. Especially valuable for students / new grads — the main audience.
+5. **Personal** — location, languages, hobbies, service/volunteering, and
    contact/social buttons at the very bottom.
 
 Non-negotiable: **every job and every project must have an image AND an
@@ -101,6 +104,56 @@ Collect, per section:
   words from the LinkedIn "About"/personal site read best), and **their profile
   photo** for the About section (see step 4 for how to grab it).
 
+**When socials/contact are thin — go looking, then ask.** Some profiles (often
+students) expose little beyond LinkedIn: no email, no GitHub, no X, no personal
+site. The Connect section needs more than one lone LinkedIn button, so:
+
+1. **Search for their other feeds.** Run `WebSearch` for the person on the
+   platforms they're likely on — at minimum **Instagram and TikTok**, plus X and
+   GitHub — e.g. `"<full name>" <school/company> instagram`,
+   `"<full name>" tiktok`, `<full name> github`. Match carefully: confirm it's
+   the same person (same name **and** corroborating details like school,
+   city, photo, or an interest you already know) before adding a link — don't
+   attach a stranger's account. When in doubt, treat it as unconfirmed.
+2. **If you still can't find (or confirm) anything, STOP and ask the user** for
+   the links they want included (they often have handles you can't surface).
+   Don't ship a Connect section with a single link, and don't invent or guess
+   handles. Add whatever they give you and move on.
+
+### 3.5. Standing & standout coursework (the Education section)
+
+Most people using this skill are **students or new grads**, so the Education
+section carries real weight. Build it in two moves:
+
+- **Compute their standing** from their graduation year and *today's date* — don't
+  just restate "Class of 2027." For a standard 4-year degree, grad year − 4 = start
+  year; compare against the current date to get the year they're *entering* and
+  whether it's their final year. E.g. Class of 2027 as of mid-2026 → finished 3rd
+  year, **entering 4th (final) year**. Phrase it like
+  `Class of 2027 · entering 4th (final) year · <city>`. If the program isn't the
+  usual 4 years (accelerated, co-op, master's, transfer), adjust or keep it vague
+  rather than guessing wrong.
+- **Look up their program's real course catalog** and pick the **3 most
+  interesting classes**. Find the official calendar/catalog (search
+  `"<university>" "<program>" course catalog` or the department site), read the
+  actual course codes, titles, and descriptions — **never invent course codes or
+  titles.** Choose upper-year / advanced electives appropriate to their standing
+  (a 4th-year gets 3000–4000-level courses, not intro ones), and prefer the ones
+  that **echo their experience and projects** (e.g. surface a security course for
+  someone who shipped auth work, an ML course for someone building AI products) so
+  the page reads as one coherent story. Write each blurb as one engaging sentence
+  distilled from the real course description.
+
+Frame the cards honestly as *coursework they're drawn to / excited about* rather
+than claiming completion — these are highlights from their program, not a
+transcript. If you genuinely can't find the catalog (obscure/international school,
+paywalled), tell the user and ask them for a few courses instead of fabricating.
+
+For the `.edu-lead` school tile, reuse a real crest (`images/logo_<school>.png`)
+if you grabbed one for Experience; otherwise a `.logo-tile.mono` with the school's
+initial and brand color reads clean (a tiny/blurry favicon looks worse than a
+tidy mono tile).
+
 ### 4. Gather images & videos (the part that makes it engaging)
 
 Create an `images/` folder in the output dir and download every asset **locally**
@@ -157,7 +210,8 @@ whole dance fails, fall back to a monogram tile and tell the user.
 ### 5. Generate the page
 
 Copy `assets/template.html` (next to this skill) and fill in the placeholders,
-repeating the marked `.job` / `.card` blocks per item. Keep it a **single
+repeating the marked `.job` / `.card` / `.course` blocks per item (the template
+now includes the Education section between Projects and About). Keep it a **single
 self-contained HTML file** — inline CSS + JS, no external dependencies besides
 the local `images/`. The template already provides the engaging layer: animated
 gradient blobs, sticky glass nav, scroll-reveal, logo tiles, video cards with
